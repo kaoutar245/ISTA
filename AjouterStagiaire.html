@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Stagiaires ISTA</title>
+    <style>
+        /* Style global */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #B71C1C; /* Rouge ISTA */
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #B71C1C;
+        }
+
+        .hero {
+            background-color: #ddd;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: #B71C1C;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        input, select, button {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #B71C1C;
+            color: white;
+            cursor: pointer;
+            border: none;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #880E0E;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Gestion des Stagiaires - ISTA
+    </header>
+
+    <nav>
+        <a href="#">Accueil</a>
+        <a href="#">Stagiaires</a>
+        <a href="#">Contact</a>
+    </nav>
+
+    <section class="hero">
+        <h1>Bienvenue sur la plateforme ISTA</h1>
+        <p>Inscrivez les stagiaires en toute simplicité.</p>
+    </section>
+
+    <div class="form-container">
+        <h2>Formulaire d'Inscription</h2>
+        <form id="stagiaire-form">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" placeholder="Entrez le nom" required>
+
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" placeholder="Entrez le prénom" required>
+
+            <label for="filiere">Filière :</label>
+            <select id="filiere" required>
+                <option value="">Sélectionnez la filière</option>
+                <option value="Développement Digital">Développement Digital</option>
+                <option value="Réseaux Informatiques">Réseaux Informatiques</option>
+                <option value="Gestion des Entreprises">Gestion des Entreprises</option>
+            </select>
+
+            <label for="annee-etude">Année d'Étude :</label>
+            <select id="annee-etude" required>
+                <option value="">Sélectionnez l'année</option>
+                <option value="1ère année">1ère année</option>
+                <option value="2ème année">2ème année</option>
+            </select>
+
+            <label for="type-bac">Type de Bac :</label>
+            <select id="type-bac" required>
+                <option value="">Sélectionnez le type</option>
+                <option value="Sciences Physiques">Sciences Physiques</option>
+                <option value="Sciences Mathématiques">Sciences Mathématiques</option>
+                <option value="Lettres">Lettres</option>
+                <option value="Économie">Économie</option>
+            </select>
+
+            <label for="annee-bac">Année du Bac :</label>
+            <input type="number" id="annee-bac" placeholder="Entrez l'année du Bac" min="2000" max="2024" required>
+
+            <button type="submit">Enregistrer</button>
+        </form>
+    </div>
+
+    <footer>
+        &copy; 2024 ISTA - Tous droits réservés.
+    </footer>
+
+    <script>
+        const form = document.getElementById('stagiaire-form');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const stagiaire = {
+                nom: document.getElementById('nom').value,
+                prenom: document.getElementById('prenom').value,
+                filiere: document.getElementById('filiere').value,
+                anneeEtude: document.getElementById('annee-etude').value,
+                typeBac: document.getElementById('type-bac').value,
+                anneeBac: document.getElementById('annee-bac').value,
+            };
+
+            // Simuler l'envoi au backend
+            console.log("Stagiaire enregistré :", stagiaire);
+
+            // Réinitialiser le formulaire
+            form.reset();
+
+            alert('Le stagiaire a été enregistré avec succès !');
+        });
+    </script>
+</body>
+</html>
