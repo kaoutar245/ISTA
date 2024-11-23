@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche Stagiaires</title>
+    <style>
+        /* Style global */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.5s ease; /* Effet fluide pour le changement de couleur */
+        }
+
+        header {
+            background-color: #1D4B8F;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            color: #1D4B8F;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .form-section {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .form-section select, .form-section button {
+            padding: 10px;
+            margin: 10px 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+
+        .form-section button {
+            background-color: #1D4B8F;
+            color: white;
+            cursor: pointer;
+            border: none;
+            font-weight: bold;
+        }
+
+        .form-section button:hover {
+            background-color: #FFB400;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #1D4B8F;
+            color: white;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        #no-result {
+            text-align: center;
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>Recherche Stagiaires</header>
+
+    <section class="container">
+        <h2 class="section-title">Filtrer les Stagiaires</h2>
+
+        <div class="form-section">
+            <!-- Formulaire pour sélectionner la filière et l'année -->
+            <select id="filiere-select">
+                <option value="">-- Sélectionnez une filière --</option>
+                <option value="Forêt et Environnement">Forêt et Environnement</option>
+                <option value="Mécanique Générale">Mécanique Générale</option>
+                <option value="Technologie de l'Information">Technologie de l'Information</option>
+            </select>
+
+            <select id="annee-select">
+                <option value="">-- Sélectionnez une année --</option>
+                <option value="1ère année">1ère année</option>
+                <option value="2ème année">2ème année</option>
+            </select>
+
+            <button onclick="filtrerStagiaires()">Rechercher</button>
+        </div>
+
+        <table id="stagiaire-table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Filière</th>
+                    <th>Année</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Les données des stagiaires seront insérées ici -->
+            </tbody>
+        </table>
+
+        <div id="no-result" style="display: none;">Aucun stagiaire trouvé.</div>
+    </section>
+
+    <script>
+        // Liste des stagiaires
+        const stagiaires = [
+            { nom: "El Mehdi", prenom: "Bouzid", filiere: "Forêt et Environnement", annee: "1ère année" },
+            { nom: "Fatima", prenom: "Zahra", filiere: "Technologie de l'Information", annee: "2ème année" },
+            { nom: "Amine", prenom: "Lahlou", filiere: "Mécanique Générale", annee: "1ère année" },
+            { nom: "Khadija", prenom: "Belmokhtar", filiere: "Technologie de l'Information", annee: "2ème année" },
+            { nom: "Youssef", prenom: "Benali", filiere: "Forêt et Environnement", annee: "2ème année" }
+        ];
+
+        // Fonction pour filtrer les stagiaires
+        function filtrerStagiaires() {
+            const filiere = document.getElementById("filiere-select").value;
+            const annee = document.getElementById("annee-select").value;
+            const tbody = document.querySelector("#stagiaire-table tbody");
+            const noResult = document.getElementById("no-result");
+
+            // Réinitialiser le tableau et cacher le message "Aucun résultat"
+            tbody.innerHTML = "";
+            noResult.style.display = "none";
+
+            // Filtrer les stagiaires en fonction des critères
+            const stagiairesFiltres = stagiaires.filter(stagiaire => {
+                return (!filiere || stagiaire.filiere === filiere) &&
+                       (!annee || stagiaire.annee === annee);
+            });
+
+            // Si aucun stagiaire trouvé, afficher le message
+            if (stagiairesFiltres.length === 0) {
+                noResult.style.display = "block";
+                document.body.style.backgroundColor = "#f5f5f5"; // Couleur par défaut
+                return;
+            }
+
+            // Insérer les stagiaires filtrés dans le tableau
+            stagiairesFiltres.forEach(stagiaire => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${stagiaire.nom}</td>
+                    <td>${stagiaire.prenom}</td>
+                    <td>${stagiaire.filiere}</td>
+                    <td>${stagiaire.annee}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Changer la couleur de la page en fonction de la filière
+            if (filiere === "Forêt et Environnement") {
+                document.body.style.backgroundColor = "#e8f5e9"; // Vert clair
+            } else if (filiere === "Mécanique Générale") {
+                document.body.style.backgroundColor = "#e0e0e0"; // Gris clair
+            } else if (filiere === "Technologie de l'Information") {
+                document.body.style.backgroundColor = "#e3f2fd"; // Bleu clair
+            }
+        }
+    </script>
+</body>
+</html>
