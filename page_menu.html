@@ -1,85 +1,196 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Application Menu</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Reset and basic setup */
+        * {
             margin: 0;
             padding: 0;
-            background: url('') no-repeat center center fixed; /* Remplacez 'background.jpg' par l'URL de votre image */
-            background-size: cover;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            height: 100vh;
             color: #333;
         }
 
-        header {
-            text-align: center;
-            font-size: 2rem;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7); /* Fond semi-transparent */
+        /* --- Sidebar --- */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #004d40;
             color: white;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
         }
 
-        nav {
-            background-color: #757575; /* Gris pour la barre de navigation */
-            padding: 10px 20px;
-            text-align: center;
+        .sidebar h2 {
+            font-size: 22px;
+            margin-bottom: 30px;
         }
 
-        nav a {
-            margin: 0 15px;
-            color: white;
+        .sidebar a {
             text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
+            color: white;
+            font-size: 18px;
+            margin: 15px 0;
+            transition: 0.3s;
         }
 
-        nav a:hover {
+        .sidebar a:hover {
             text-decoration: underline;
         }
 
-        main {
+        /* --- Main Content --- */
+        .main-content {
+            margin-left: 250px;
             padding: 20px;
-            text-align: center;
+            width: calc(100% - 250px);
+            background: #f5f5f5;
+            display: flex;
+            flex-direction: column;
         }
 
-        footer {
-            text-align: center;
-            padding: 10px 20px;
-            background-color: #757575; /* Même gris que la barre de navigation */
+        /* --- Header --- */
+        header {
+            background: #003366;
             color: white;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        body {
-    background-color: #e3f2fd; /* Bleu clair */
-    color: #333; /* Texte sombre pour un bon contraste */
-}
+
+        header h1 {
+            font-size: 28px;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: #004d40;
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .hero h2 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 40px;
+        }
+
+        /* --- Content Sections --- */
+        .section {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        /* --- Image Section --- */
+        .div1 {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .div1 img {
+            width: 150px;
+            margin: 10px;
+            border-radius: 8px;
+        }
+
+        #image-containe{
+            perspective: 1000px; /* Adds depth for 3D effect */
+        }
+
+        #image-container img {
+            width: 200px;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            border-radius: 10px;
+        }
+
+        #image-container img:hover {
+            transform: scale(1.2) translateZ(50px); /* Moves the image closer */
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Adds shadow for depth */
+        }
+        
 
     </style>
 </head>
 <body>
-    <header>
-        Menu de l'Application
-    </header>
 
-    <nav>
-        <a href="#">Accueil</a>
-        <a href="#about">À propos</a>
-        <a href="#">Modifier</a>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>ISTA</h2>
+        <a href="Page d'Accueil d'ISTA.html">Accueil</a>
+        <a href="profile.html">Profil</a>
+        <a href="modify.html">Modifier</a>
+        <a href="page_menu.html">Menu</a>
+        <a href="apropos.html">À propos</a>
+    </div>
+
+    <div class="main-content">
+        <div class="hero">
+            <h2>Bienvenue dans notre Application</h2>
+            <p>Utilisez le menu ci-dessus pour naviguer dans différentes sections de l'application.</p>
+        </div>
+
+        <div id="home" class="section active">
+            <h1>Menu</h1>
+            
+        </div>
+
+        <div id="about" class="section">
+            <h1>À propos de l'application</h1>
+            <p>Cette application permet de gérer divers services liés à l'éducation et aux étudiants.</p>
+        </div>
+
+        <div id="modify" class="section">
+            <h1>Modifier les informations</h1>
+            <p>Section pour modifier les informations d'un utilisateur ou d'un produit.</p>
+        </div>
+
         
-    </nav>
+        <div class="div1" id="image-container">
+            <a href="AjouterStagiaire.html">
+                <img src="/ISTA/DALL·E 2024-11-23 14.28.31 - A welcoming scene at an educational institute's front entrance. A smiling student is being warmly greeted by a staff member while other students walk .webp" alt="Inscription">
+            </a>
+            <a href="apropos.html">
+                <img src="/ISTA/Monica_2024-11-23_14-39-27.jpeg" alt="À propos">
+            </a>
+        </div>
 
-    <main>
-        <h1>Bienvenue dans notre application</h1>
-        <p>Utilisez le menu ci-dessus pour naviguer.</p>
-    </main>
+        
+        <footer>
+            &copy; 2024 Votre Application - Tous droits réservés.
+        </footer>
 
-    <footer>
-        &copy; 2024 Votre Application - Tous droits réservés.
-    </footer>
+    </div>
+
 </body>
 </html>
